@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>summary</h1>
+    <h2>total :<span id="total"></span></h2>
+    <h2>confirmedCasesIndian :<span id="confirmedCasesIndian"></span></h2>
+    <h2>confirmedCasesForeign :<span id="confirmedCasesForeign"></span></h2>
+    <h2>discharged :<span id="discharged"></span></h2>
+    <h2>deaths :<span id="deaths"></span></h2>
+    <h2>confirmedButLocationUnidentified :<span id="confirmedButLocationUnidentified"></span></h2>
+    <button id="btn"> click</button>
+    
+</body>
+</html>
+
+<script>
+     let btn = document.getElementById("btn")
+    btn.addEventListener("click",()=>{
+
+
+
+    fetch("https://api.rootnet.in/covid19-in/stats/latest")
+    .then((Response)=>Response.json())
+    .then((data)=>{console.log(data)
+
+        document.getElementById("total").innerHTML = data.data.summary.total
+        document.getElementById("confirmedCasesIndian").innerHTML = data.data.summary.confirmedCasesIndian
+        document.getElementById("confirmedCasesForeign").innerHTML = data.data.summary.confirmedCasesForeign
+        document.getElementById("discharged").innerHTML = data.data.summary.discharged
+        document.getElementById("deaths").innerHTML = data.data.summary.deaths
+        document.getElementById("confirmedButLocationUnidentified").innerHTML = data.data.summary.confirmedButLocationUnidentified
+
+
+
+
+    })
+    .catch((arr)=>arr)
+})
+</script>
